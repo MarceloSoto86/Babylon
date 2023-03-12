@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 
     private Rigidbody enemyRb;
     private GameObject player;
-    public float speed = 3.0f;
+    public float speed = 100f;
     public float enemyHealth { get; private set; } // ENCAPSULATION
 
 
@@ -15,13 +15,13 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         enemyRb= GetComponent<Rigidbody>();
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Building");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        MovementToPlayer();
     }
 
     public void MovementToPlayer() // ABSTRACTION

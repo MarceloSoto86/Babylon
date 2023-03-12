@@ -5,7 +5,11 @@ using UnityEngine;
 public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject[] enemies;
-    private float spawnRange = 300;
+    private float spawnZLeft = -284;
+    private float spawnZRight = 500;
+    private float spawnXMin = 488;
+    private float spawnXMax = 480;
+    private float spawnYPos = 3;
     [SerializeField] private int enemyCount;
     [SerializeField] private int waveNumber = 1;
 
@@ -24,10 +28,10 @@ public class EnemySpawnManager : MonoBehaviour
 
     private Vector3 GenerateSpawnPosition()
     {
-        float spawnPosX = Random.Range(-spawnRange, spawnRange);
-        float spawnPosZ = Random.Range(-spawnRange, spawnRange);
+        float spawnPosX = Random.Range(spawnXMin, spawnXMax);
+        float spawnPosZ = Random.Range(spawnZLeft, spawnZRight);
 
-        Vector3 randomSpawnPos = new Vector3(spawnPosX, 0, spawnPosZ);
+        Vector3 randomSpawnPos = new Vector3(spawnPosX, spawnYPos, spawnPosZ);
 
         return randomSpawnPos;
     }
