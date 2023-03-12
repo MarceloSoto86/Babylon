@@ -5,8 +5,7 @@ using UnityEngine;
 public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject[] enemies;
-    private float spawnZLeft = -284;
-    private float spawnZRight = 500;
+    private float spawnZRange = 400;
     private float spawnXMin = 488;
     private float spawnXMax = 480;
     private float spawnYPos = 3;
@@ -29,7 +28,7 @@ public class EnemySpawnManager : MonoBehaviour
     private Vector3 GenerateSpawnPosition()
     {
         float spawnPosX = Random.Range(spawnXMin, spawnXMax);
-        float spawnPosZ = Random.Range(spawnZLeft, spawnZRight);
+        float spawnPosZ = Random.Range(-spawnZRange, spawnZRange);
 
         Vector3 randomSpawnPos = new Vector3(spawnPosX, spawnYPos, spawnPosZ);
 
