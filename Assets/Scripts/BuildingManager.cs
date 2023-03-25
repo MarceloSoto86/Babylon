@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 
 public class BuildingManager : MonoBehaviour
 {
+    public static BuildingManager current;
 
     public GameObject[] buildings;
     private GameObject pendingObject;
@@ -18,7 +19,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] private Toggle gridToggle;
 
-    //private float maxDistanceRay = 10000;
+    private float maxDistanceRay = 10000;
     public float gridSize;
     public float rotateAmount;
 
@@ -35,7 +36,7 @@ public class BuildingManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         //Ray ray = Camera.main.ScreenPointToRay(mouse.current.position.ReadDefaultValue());
-        if (Physics.Raycast(ray,out rcHit, 10000,layerMask))
+        if (Physics.Raycast(ray, out rcHit, maxDistanceRay,layerMask)) // RaycastHit raycastHit))
         {
             posBuilding = rcHit.point;
         }
@@ -48,7 +49,7 @@ public class BuildingManager : MonoBehaviour
             if(gridOn)
             {
                 pendingObject.transform.position = new Vector3(
-                RoundToNearestGrid(posBuilding.x), RoundToNearestGrid(posBuilding.y),RoundToNearestGrid(posBuilding.z));
+                RoundToNearestGrid(posBuilding.x), RoundToNearestGrid(posBuilding.y + 15),RoundToNearestGrid(posBuilding.z));
                  
 
             }
@@ -75,7 +76,9 @@ public class BuildingManager : MonoBehaviour
         pendingObject = null;
     }
 
-    public void SelectObject(int index)
+    
+
+    public void SelectBuilding(int index)
     {
         pendingObject = Instantiate(buildings[index], posBuilding, transform.rotation);
     }
