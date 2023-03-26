@@ -13,15 +13,36 @@ public class RTSPlaceholder : MonoBehaviour
 
     private Renderer _placeholderChecker;
 
-   // public GridManager gridManager;
-   /* public float _gridSize = 10f; // Tamaño de cuadrícula por defecto*/
-   // private bool _isGridEnabled = false; // Indicador de si el grid está habilitado o no
+    public enum BuildingType
+    {
+        BuildingA,
+        BuildingB,
+        BuildingC
+    }
 
+    public BuildingType buildingType;
+
+    public Material buildingAMaterial;
+    public Material buildingBMaterial;
+    public Material buildingCMaterial;
 
     private void Start()
     {
-       // gridManager= GetComponent<GridManager>();
+     
         _placeholderChecker = transform.Find("Placeholder Check").GetComponent<Renderer>();
+       
+        switch (buildingType)
+        {
+            case BuildingType.BuildingA:
+                _placeholderChecker.material = buildingAMaterial;
+                break;
+            case BuildingType.BuildingB:
+                _placeholderChecker.material = buildingBMaterial;
+                break;
+            case BuildingType.BuildingC:
+                _placeholderChecker.material = buildingCMaterial;
+                break;
+        }
     }
 
     public void FixedUpdate()
@@ -36,40 +57,24 @@ public class RTSPlaceholder : MonoBehaviour
             isBuildable = true;
             _placeholderChecker.material.SetColor("_Color", Color.green);
         }
-
-        // Si el grid está habilitado, redondea la posición del placeholder a la cuadrícula
-    /*    if (_isGridEnabled)
-        {
-            Vector3 position = _placeholderChecker.transform.position;
-            float roundedX = Mathf.Round(position.x / _gridSize) * _gridSize;
-            float roundedZ = Mathf.Round(position.z / _gridSize) * _gridSize;
-            _placeholderChecker.transform.position = new Vector3(roundedX, position.y, roundedZ);
-        }*/
+    
     }
 
-    // Método para cambiar el tamaño de la cuadrícula
-   /* public void SetGridSize(float size)
-    {
-        _gridSize = size;
-    }*/
 
-    // Método para habilitar o deshabilitar el grid
-   /* public void ToggleGrid()
-    {
-        _isGridEnabled = !_isGridEnabled;
-    }*/
 
     private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag != "Ground") _collisionHit++;
+        {
+            if (other.gameObject.tag != "Ground") _collisionHit++;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag != "Ground") _collisionHit--;
+            isBuildable = _collisionHit == 0;
+        }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.tag !="Ground") _collisionHit--;
-        isBuildable = _collisionHit == 0;
-    }
 
 
-}
+
 

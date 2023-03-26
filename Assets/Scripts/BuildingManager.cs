@@ -18,7 +18,6 @@ public class BuildingManager : MonoBehaviour
     private RaycastHit rcHit;
     [SerializeField] LayerMask layerMask;
     [SerializeField] private Toggle gridToggle;
-    //[SerializeField] private Material[] materials;
 
     private float maxDistanceRay = 10000;
     public float gridSize;
@@ -35,11 +34,7 @@ public class BuildingManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        //This creates a raycast and stores the hit value as the new Building position based on mouse position
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //Ray ray = Camera.main.ScreenPointToRay(mouse.current.position.ReadDefaultValue());
         if (Physics.Raycast(ray, out rcHit, maxDistanceRay,layerMask)) // RaycastHit raycastHit))
         {
             posBuilding = rcHit.point;
@@ -47,8 +42,6 @@ public class BuildingManager : MonoBehaviour
     }
     void Update()
     {
-       
-
         if (pendingObject!= null)
         {
 
@@ -64,7 +57,7 @@ public class BuildingManager : MonoBehaviour
                 pendingObject.transform.position = posBuilding; 
             }
 
-           // updateMaterials();
+        
 
             if (Input.GetMouseButton(0) && canPlace)
             {
@@ -78,32 +71,13 @@ public class BuildingManager : MonoBehaviour
                 RotateObject();
             }
 
-            
-
-
         }
     }
 
 
-    /*void updateMaterials()
-    {
-
-        //When gets the component of the appending object mesh renderer, sets the material to be materials zero index if you can place it
-        if (canPlace)
-        {
-            pendingObject.GetComponent<MeshRenderer>().material = materials[0];
-        }
-
-        if (!canPlace)
-        {
-            pendingObject.GetComponent<MeshRenderer>().material = materials[1];
-        }*/
-
-    //}
+    
     void PlaceObject()
     {
-
-        //pendingObject.GetComponent<MeshRenderer>().material = materials[2];
         pendingObject = null;
     }
 

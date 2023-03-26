@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RTSBuildingMgr : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class RTSBuildingMgr : MonoBehaviour
     private GameObject _placeholder;
 
     [SerializeField] private GameObject _building;
+    [SerializeField] private Toggle gridToggle;
 
     private Vector3 _mousePosition;
 
@@ -15,6 +17,12 @@ public class RTSBuildingMgr : MonoBehaviour
     private float _previousZ;
 
     private RTSPlaceholder _buildingScript;
+
+    
+    public float gridSize;
+    public float rotateAmount;
+
+    bool gridOn = true;
 
 
     private void Start()
@@ -40,17 +48,14 @@ public class RTSBuildingMgr : MonoBehaviour
                 _previousX = positionX;
                 _previousZ = positionZ;
 
-                // Debug.Log(positionX + " / " + positionZ);
+              
 
                 _placeholder.transform.position = new Vector3(positionX, 15f, positionZ);
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-               // _buildingScript.FixedUpdate();
-
-                //Instantiate(_building, _placeholder.transform.position, Quaternion.identity);
-
+               
                 if (_buildingScript.isBuildable)
                 {
                     Instantiate(_building, _placeholder.transform.position, Quaternion.identity);
@@ -58,5 +63,29 @@ public class RTSBuildingMgr : MonoBehaviour
 
             }
         }
+    }
+
+    public void ToggleGrid()
+    {
+        if (gridToggle.isOn)
+        {
+            gridOn = true;
+        }
+        else
+        {
+            gridOn = false;
+        }
+    }
+
+    float RoundToNearestGrid(float pos)
+    {
+        float xDiff = pos % gridSize;
+        pos -= xDiff;
+
+        if (xDiff > (gridSize / 2))
+        {
+            pos += gridSize;
+        }
+        return pos;
     }
 }

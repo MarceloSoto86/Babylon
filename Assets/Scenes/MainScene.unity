@@ -1947,15 +1947,30 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 517817858}
-  - component: {fileID: 517817857}
+  - component: {fileID: 517817859}
   m_Layer: 0
   m_Name: BuildingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &517817857
+  m_IsActive: 1
+--- !u!4 &517817858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517817856}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -188.89809, y: -1.5, z: -166.87288}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 606332363}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &517817859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1964,38 +1979,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 517817856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7656fb4770930204d9f6b120a45c2a05, type: 3}
+  m_Script: {fileID: 11500000, guid: 237e694258aec9b439ccb8b1975a5fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildings:
-  - {fileID: 7696407970746890960, guid: bc3abc277aeb18c47b72262ddaa85fef, type: 3}
-  - {fileID: 3432130895356285106, guid: 92bc1dbab44696648a57af74b2ecb695, type: 3}
-  - {fileID: 8592737768806348311, guid: 2ad4476f2a43f0040b1c3e9ef2047598, type: 3}
-  - {fileID: 318283535733617097, guid: 11fcbc8b10c74654a9571bdada31dc2a, type: 3}
-  - {fileID: 4277218913914779975, guid: 2062b172c4858cb41bb8f4b84de87a48, type: 3}
-  pendingObject: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
+  _placeHolderBuilding: {fileID: 7696407970746890960, guid: c404937091528f24287621b8d1d5756a, type: 3}
+  _building: {fileID: 7696407970746890960, guid: bc3abc277aeb18c47b72262ddaa85fef, type: 3}
   gridToggle: {fileID: 1802067293}
-  gridSize: 10
+  gridSize: 1000
   rotateAmount: 0
-  canPlace: 1
---- !u!4 &517817858
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 517817856}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549767728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,7 +2550,8 @@ Transform:
   m_LocalPosition: {x: 188.89809, y: 1.5, z: 166.87288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 517817858}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2903,6 +2895,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPrefabs: []
   ghostBuildingPrefab: {fileID: 7696407970746890960, guid: c404937091528f24287621b8d1d5756a, type: 3}
+  ghostBuilding: {fileID: 0}
+  selectedBuildingPrefab: {fileID: 0}
+  isBuilding: 0
 --- !u!4 &686051941
 Transform:
   m_ObjectHideFlags: 0
@@ -2916,7 +2911,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &698486105
 GameObject:
@@ -3810,6 +3805,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817807903}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &833903461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 833903463}
+  - component: {fileID: 833903462}
+  m_Layer: 0
+  m_Name: TestingObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &833903462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833903461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dccee585d6956cf40bea376872aa3b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &833903463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833903461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.75, y: 0, z: -50.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &839549637
 GameObject:
   m_ObjectHideFlags: 0
@@ -6011,7 +6050,6 @@ GameObject:
   - component: {fileID: 1648811353}
   - component: {fileID: 1648811352}
   - component: {fileID: 1648811351}
-  - component: {fileID: 1648811354}
   m_Layer: 0
   m_Name: Perspective Cam
   m_TagString: MainCamera
@@ -6085,20 +6123,6 @@ Transform:
   m_Father: {fileID: 1205255703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 30, z: 0.093}
---- !u!114 &1648811354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648811350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 237e694258aec9b439ccb8b1975a5fa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _placeHolderBuilding: {fileID: 7696407970746890960, guid: c404937091528f24287621b8d1d5756a, type: 3}
-  _building: {fileID: 7696407970746890960, guid: bc3abc277aeb18c47b72262ddaa85fef, type: 3}
 --- !u!1 &1664843677
 GameObject:
   m_ObjectHideFlags: 0
@@ -6995,8 +7019,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GridButton, Assembly-CSharp
-        m_MethodName: 
+        m_TargetAssemblyTypeName: RTSBuildingMgr, Assembly-CSharp
+        m_MethodName: ToggleGrid
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
