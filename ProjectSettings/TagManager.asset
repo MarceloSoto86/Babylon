@@ -11,6 +11,8 @@ TagManager:
   - Building
   - PerspectiveCam
   - EnemyHordeCam
+  - BuildBlocker
+  - Obstacle
   layers:
   - Default
   - TransparentFX

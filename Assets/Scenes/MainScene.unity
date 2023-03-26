@@ -1546,10 +1546,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 517817857}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
-        m_MethodName: SelectBuilding
-        m_Mode: 3
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: BuildingContainer, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1954,7 +1954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &517817857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,12 +1973,14 @@ MonoBehaviour:
   - {fileID: 8592737768806348311, guid: 2ad4476f2a43f0040b1c3e9ef2047598, type: 3}
   - {fileID: 318283535733617097, guid: 11fcbc8b10c74654a9571bdada31dc2a, type: 3}
   - {fileID: 4277218913914779975, guid: 2062b172c4858cb41bb8f4b84de87a48, type: 3}
+  pendingObject: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 8
   gridToggle: {fileID: 1802067293}
-  gridSize: 0.5
-  rotateAmount: 90
+  gridSize: 10
+  rotateAmount: 0
+  canPlace: 1
 --- !u!4 &517817858
 Transform:
   m_ObjectHideFlags: 0
@@ -1987,7 +1989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517817856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2687,7 +2689,6 @@ GameObject:
   - component: {fileID: 658115680}
   - component: {fileID: 658115679}
   - component: {fileID: 658115678}
-  - component: {fileID: 658115682}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Ground
@@ -2774,30 +2775,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &658115682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658115677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7656fb4770930204d9f6b120a45c2a05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildings:
-  - {fileID: 7696407970746890960, guid: bc3abc277aeb18c47b72262ddaa85fef, type: 3}
-  - {fileID: 3432130895356285106, guid: 92bc1dbab44696648a57af74b2ecb695, type: 3}
-  - {fileID: 8592737768806348311, guid: 2ad4476f2a43f0040b1c3e9ef2047598, type: 3}
-  - {fileID: 318283535733617097, guid: 11fcbc8b10c74654a9571bdada31dc2a, type: 3}
-  - {fileID: 4277218913914779975, guid: 2062b172c4858cb41bb8f4b84de87a48, type: 3}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  gridToggle: {fileID: 1802067293}
-  gridSize: 10
-  rotateAmount: 90
 --- !u!1 &669560580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2895,6 +2872,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669560580}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &686051939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 686051941}
+  - component: {fileID: 686051940}
+  m_Layer: 0
+  m_Name: BuildingContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &686051940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686051939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a359e416e757439e382bce1bda64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingPrefabs: []
+  ghostBuildingPrefab: {fileID: 7696407970746890960, guid: c404937091528f24287621b8d1d5756a, type: 3}
+--- !u!4 &686051941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686051939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 107.31439, y: 152.42722, z: -104.43844}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &698486105
 GameObject:
   m_ObjectHideFlags: 0
@@ -3985,10 +4008,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 517817857}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
-        m_MethodName: SelectBuilding
-        m_Mode: 3
+      - m_Target: {fileID: 686051940}
+        m_TargetAssemblyTypeName: BuildingContainer, Assembly-CSharp
+        m_MethodName: SelectNextBuilding
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5927,10 +5950,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 517817857}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
-        m_MethodName: SelectBuilding
-        m_Mode: 3
+      - m_Target: {fileID: 686051940}
+        m_TargetAssemblyTypeName: BuildingContainer, Assembly-CSharp
+        m_MethodName: SelectNextBuilding
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6069,18 +6092,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648811350}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 594163468901f8244a4e1b62b82b1899, type: 3}
+  m_Script: {fileID: 11500000, guid: 237e694258aec9b439ccb8b1975a5fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _placeHolderBuilding: {fileID: 7696407970746890960, guid: 8c0c8e239ca0bc4428c229dbdc189a9e, type: 3}
-  _placeholder: {fileID: 0}
+  _placeHolderBuilding: {fileID: 7696407970746890960, guid: c404937091528f24287621b8d1d5756a, type: 3}
   _building: {fileID: 7696407970746890960, guid: bc3abc277aeb18c47b72262ddaa85fef, type: 3}
-  _mousePosition: {x: 0, y: 0, z: 0}
-  _previousX: 0
-  _previousZ: 0
-  _buildingScript: {fileID: 0}
 --- !u!1 &1664843677
 GameObject:
   m_ObjectHideFlags: 0
@@ -6976,9 +6994,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 517817857}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
-        m_MethodName: ToggleGrid
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GridButton, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6988,7 +7006,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1814611062
 GameObject:
   m_ObjectHideFlags: 0
@@ -7305,10 +7323,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 517817857}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
-        m_MethodName: SelectBuilding
-        m_Mode: 3
+      - m_Target: {fileID: 686051940}
+        m_TargetAssemblyTypeName: BuildingContainer, Assembly-CSharp
+        m_MethodName: SelectNextBuilding
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7439,10 +7457,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 517817857}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
-        m_MethodName: SelectBuilding
-        m_Mode: 3
+      - m_Target: {fileID: 686051940}
+        m_TargetAssemblyTypeName: BuildingContainer, Assembly-CSharp
+        m_MethodName: SelectNextBuilding
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
