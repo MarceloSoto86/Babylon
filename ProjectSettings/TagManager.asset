@@ -3,26 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Ground
-  - MiniBoss
-  - Boss
-  - Building
-  - PerspectiveCam
-  - EnemyHordeCam
-  - BuildBlocker
-  - Obstacle
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Floor
+  - 
   - Water
   - UI
   - 
   - 
-  - 
+  - PostProcessing
   - 
   - 
   - 

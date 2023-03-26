@@ -9,26 +9,34 @@ public class RTSBuildingMgr : MonoBehaviour
     private GameObject _placeholder;
 
     [SerializeField] private GameObject _building;
-    [SerializeField] private Toggle gridToggle;
+    [SerializeField] private float _snapSize = 1f;
+    [SerializeField] private Toggle _gridToggle;
+
+    
 
     private Vector3 _mousePosition;
 
     private float _previousX;
     private float _previousZ;
+    public float _gridSize = 100f;
 
     private RTSPlaceholder _buildingScript;
 
     
-    public float gridSize;
+
     public float rotateAmount;
 
     bool gridOn = true;
+    
 
 
     private void Start()
     {
         _placeholder = Instantiate(_placeHolderBuilding);
         _buildingScript = _placeholder.GetComponent<RTSPlaceholder>();
+
+        // Se agrega un listener al evento onValueChanged del botón de Toggle
+        _gridToggle.onValueChanged.AddListener(OnGridToggle);
     }
 
     private void Update()
@@ -43,6 +51,16 @@ public class RTSBuildingMgr : MonoBehaviour
             float positionX = hit.point.x;
             float positionZ = hit.point.z;
 
+            if (gridOn) // Si el Grid snap está activado
+            {
+                // Se redondea la posición a múltiplos del _snapSize
+                positionX = Mathf.Round(positionX / _snapSize) * _snapSize;
+                positionZ = Mathf.Round(positionZ / _snapSize) * _snapSize;
+
+                _placeholder.transform.position = new Vector3(positionX, 15f, positionZ);
+            }
+
+/*
             if (_previousX != positionX || _previousZ != positionZ)
             {
                 _previousX = positionX;
@@ -51,7 +69,7 @@ public class RTSBuildingMgr : MonoBehaviour
               
 
                 _placeholder.transform.position = new Vector3(positionX, 15f, positionZ);
-            }
+            }*/
 
             if (Input.GetMouseButtonUp(0))
             {
@@ -63,29 +81,34 @@ public class RTSBuildingMgr : MonoBehaviour
 
             }
         }
+
     }
 
-    public void ToggleGrid()
+
+    public void OnGridToggle(bool value)
     {
-        if (gridToggle.isOn)
+        if(_gridToggle.isOn)
         {
-            gridOn = true;
+
+        gridOn = value;
+
         }
         else
         {
-            gridOn = false;
+            gridOn= false;
         }
     }
 
     float RoundToNearestGrid(float pos)
     {
-        float xDiff = pos % gridSize;
+        float xDiff = pos % _gridSize;
         pos -= xDiff;
-
-        if (xDiff > (gridSize / 2))
+        if(xDiff >(_gridSize /2))
         {
-            pos += gridSize;
+            pos += _gridSize;
         }
         return pos;
     }
+
+
 }
