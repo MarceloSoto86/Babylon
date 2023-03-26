@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,7 +91,7 @@ public class RTSBuildingMgr : MonoBehaviour
         if(_gridToggle.isOn)
         {
 
-        gridOn = value;
+        gridOn = true;
 
         }
         else
